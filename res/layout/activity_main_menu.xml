@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	android:id="@+id/widget0"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+<Button
+	android:id="@+id/NewListButton"
+	android:layout_width="122dp"
+	android:layout_height="wrap_content"
+	android:text="New List"
+	android:layout_x="90dp"
+	android:layout_y="124dp" />
+<Button
+	android:id="@+id/LoadListButton"
+	android:layout_width="122dp"
+	android:layout_height="wrap_content"
+	android:text="Load List"
+	android:layout_x="91dp"
+	android:layout_y="191dp" />
+<Button
+	android:id="@+id/ShareListButton"
+	android:layout_width="122dp"
+	android:layout_height="wrap_content"
+	android:text="Share List"
+	android:layout_x="91dp"
+	android:layout_y="260dp" />
+</AbsoluteLayout>
+

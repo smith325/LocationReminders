@@ -14,8 +14,10 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String DB_NAME = "list.sqlite"; 
     public static final String TB_NAME = "lists";
     public static final int VERSION = 1;
-    public static final String STORE = "_store";   
-    public static final String ITEM = "item";   
+    private static final String ID = "_id";
+    public static final String STORE = "_store";  
+    public static final String ITEM = "item";
+    private static final String DATE = "date";
     
     public DBHelper(Context context) {   
         super(context, DB_NAME, null, VERSION);
@@ -30,19 +32,21 @@ public class DBHelper extends SQLiteOpenHelper {
             this.getWritableDatabase().close();
     }
   
-    public void onCreate(SQLiteDatabase db) {   
-        db.execSQL("CREATE TABLE IF NOT EXISTS "    
-        		 + TB_NAME + " ("    
-                // + STORE + " VARCHAR PRIMARY KEY ,"  
+    public void onCreate(SQLiteDatabase db) { 
+        db.execSQL("CREATE TABLE "    
+        		 + TB_NAME + " (" 
+        		 + ID + " integer primary key autoincrement, "  
         		 + STORE + " VARCHAR ,"
-                 + ITEM + " VARCHAR)");    
+        		 + ITEM + " VARCHAR, "
+        		 + DATE + " integer)");    
     }   
     
-    public long addEntry(String store, String item) {
+    public long addEntry(String store, String item, String dates) {
     	SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values = new ContentValues();   
         values.put(STORE, store);   
-        values.put(ITEM, item);   
+        values.put(ITEM, item); 
+        values.put(DATE, dates);
         long row=db.insert(DBHelper.TB_NAME, null, values);
         db.close();
         return row;
@@ -63,7 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		 arg0.execSQL("DROP TABLE IF EXISTS "+TB_NAME);
 	     onCreate(arg0);
 	}
-    
+	    
 	 public Cursor selectAll(){
 	        SQLiteDatabase db = this.getReadableDatabase();
 	        Cursor cursor = db.query(TB_NAME, null, null, null,null, null, null);

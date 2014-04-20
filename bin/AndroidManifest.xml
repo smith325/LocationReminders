@@ -22,17 +22,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="com.example.locationremindersv0.CreateNewListActivity"
             android:label="@string/title_activity_create_new_list" >
         </activity>
+        
         <activity
             android:name="com.example.locationremindersv0.LoadListActivity"
             android:label="@string/title_activity_load_list" >
         </activity>
+        
         <activity
             android:name="com.example.locationremindersv0.MainMenuActivity"
             android:label="@string/title_activity_main_menu" >
+        </activity>
+        
+        <activity
+            android:name="com.example.licationremindersv1.ViewListActivity"
+            android:label="@string/title_activity_view_list" >
         </activity>
     </application>
 

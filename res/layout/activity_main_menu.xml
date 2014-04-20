@@ -25,5 +25,22 @@
 	android:text="Share List"
 	android:layout_x="91dp"
 	android:layout_y="260dp" />
+
+<Button
+    android:id="@+id/ViewListButton"
+    android:layout_width="116dp"
+    android:layout_height="wrap_content"
+    android:layout_x="96dp"
+    android:layout_y="323dp"
+    android:text="View List" />
+
+<Button
+    android:id="@+id/ClearAllButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_x="104dp"
+    android:layout_y="385dp"
+    android:text="Clear All" />
+
 </AbsoluteLayout>
 

@@ -1,24 +1,18 @@
 package com.example.locationremindersv0;
 
 
-import com.example.locationremindersv0.MainActivity;
-
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.Editable;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class CreateNewListActivity extends Activity {
@@ -79,7 +73,8 @@ public class CreateNewListActivity extends Activity {
             		     s.append("#");
             		     s.append(items.get(i).getText());
             	}
-            	mDBHelper.addEntry(EditLocation.getText().toString(), s.toString()); 
+            	Calendar date=Calendar.getInstance();
+            	mDBHelper.addEntry(EditLocation.getText().toString(), s.toString(), date.getTime().toString()); 
             	finish();
             }
         });

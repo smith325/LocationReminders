@@ -7,5 +7,5 @@
     <string name="title_activity_create_new_list">CreateNewListActivity</string>
     <string name="title_activity_load_list">LoadListActivity</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
-
+	<string name="title_activity_view_list">ViewListActivity</string>
 </resources>

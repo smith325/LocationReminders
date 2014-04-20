@@ -67,9 +67,10 @@ public class LoadListActivity extends Activity {
             		//Cursor resultCursor = mDBHelper.getEntry(selectStore);
             		Cursor resultCursor = mDBHelper.selectItems();
             		while(resultCursor.moveToNext()){
-            			if(resultCursor.getString(0).equals(selectStore))
+            			if(resultCursor.getString(1).equals(selectStore))
             		
-            				it=resultCursor.getString(1).split("#");
+            				it=resultCursor.getString(2).split("#");
+            				String a = resultCursor.getString(3);
             			
             		}
             		int Y_Value_Of_Checkbox=100;

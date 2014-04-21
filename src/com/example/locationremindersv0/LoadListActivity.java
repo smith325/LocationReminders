@@ -11,8 +11,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.view.Display;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.AbsoluteLayout;
 import android.widget.AdapterView;
@@ -25,15 +27,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoadListActivity extends Activity {
-	String[] actions = new String[] {
-            "Bookmark",
-            "Subscribe",
-            "Share"
-    };
+	int width=0;
+	int height=0;
 	AbsoluteLayout abslayout;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		WindowManager manager = (WindowManager)this.getSystemService(this.WINDOW_SERVICE);
+		Display display = manager.getDefaultDisplay();
+		width =display.getWidth();
+		height=display.getHeight();
 		setContentView(R.layout.activity_load_list);
 		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 		abslayout=new AbsoluteLayout (this);
@@ -58,7 +61,7 @@ public class LoadListActivity extends Activity {
             		TextView textStore=new TextView(LoadListActivity.this);
             		textStore.setText(adapter.getItem(arg2));
             		
-            		AbsoluteLayout.LayoutParams textStoreLP=new AbsoluteLayout.LayoutParams(250, 100, 325, 50);
+            		AbsoluteLayout.LayoutParams textStoreLP=new AbsoluteLayout.LayoutParams(250, 100, width/2-50, 50);
             		abslayout.addView(textStore, textStoreLP);
             		setContentView(abslayout);
             
@@ -73,18 +76,19 @@ public class LoadListActivity extends Activity {
             				String a = resultCursor.getString(3);
             			
             		}
-            		int Y_Value_Of_Checkbox=100;
+            		int Y_Value_Of_Checkbox=height/8;
             		for(int i=0; i<=it.length-1; i++){
             			CheckBox checkBox=new CheckBox(LoadListActivity.this);
             			checkBox.setText(it[i]);
-            			AbsoluteLayout.LayoutParams checkBoxLP=new AbsoluteLayout.LayoutParams(250, 100, 200, Y_Value_Of_Checkbox);
-            			Y_Value_Of_Checkbox+=50;
+            			AbsoluteLayout.LayoutParams checkBoxLP=new AbsoluteLayout.LayoutParams(250, 100, width/2-150, Y_Value_Of_Checkbox);
+            			Y_Value_Of_Checkbox+=80;
             			abslayout.addView(checkBox, checkBoxLP);
             			setContentView(abslayout);
             	    }
             		Button BackButton= new Button(LoadListActivity.this);
             		BackButton.setText("Back");
-            		AbsoluteLayout.LayoutParams BackLP=new AbsoluteLayout.LayoutParams(200, 100, 270, 900);
+            		BackButton.setBackgroundColor(0xffff9900);
+            		AbsoluteLayout.LayoutParams BackLP=new AbsoluteLayout.LayoutParams(200, 200, width/2-100, height-600);
             		abslayout.addView(BackButton, BackLP);
             		BackButton.setOnClickListener(new OnClickListener() {
                         @Override

@@ -31,7 +31,7 @@ public class MainMenuActivity extends Activity {
 		LoadListButton= (Button)findViewById(R.id.LoadListButton);
 		ShareListButton= (Button)findViewById(R.id.ShareListButton);
 		ViewListButton = (Button)findViewById(R.id.ViewListButton);
-		ClearAllButton = (Button)findViewById(R.id.ClearAllButton);
+		//ClearAllButton = (Button)findViewById(R.id.ClearAllButton);
 		
 		NewListButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -68,7 +68,7 @@ public class MainMenuActivity extends Activity {
                 startActivity(intent);
             }
         });
-		
+		/*
 		ClearAllButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +76,7 @@ public class MainMenuActivity extends Activity {
             	helper.onUpgrade(sqldb,VERSION,VERSION);
             	Toast.makeText(MainMenuActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 	}
 
 	@Override

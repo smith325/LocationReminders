@@ -8,6 +8,7 @@
 	android:id="@+id/NewListButton"
 	android:layout_width="122dp"
 	android:layout_height="wrap_content"
+	android:background="@drawable/button_style" 
 	android:text="New List"
 	android:layout_x="90dp"
 	android:layout_y="124dp" />
@@ -15,6 +16,7 @@
 	android:id="@+id/LoadListButton"
 	android:layout_width="122dp"
 	android:layout_height="wrap_content"
+	android:background="@drawable/button_style" 
 	android:text="Load List"
 	android:layout_x="91dp"
 	android:layout_y="191dp" />
@@ -22,6 +24,7 @@
 	android:id="@+id/ShareListButton"
 	android:layout_width="122dp"
 	android:layout_height="wrap_content"
+	android:background="@drawable/button_style" 
 	android:text="Share List"
 	android:layout_x="91dp"
 	android:layout_y="260dp" />
@@ -30,6 +33,7 @@
     android:id="@+id/ViewListButton"
     android:layout_width="116dp"
     android:layout_height="wrap_content"
+    android:background="@drawable/button_style" 
     android:layout_x="96dp"
     android:layout_y="323dp"
     android:text="View List" />
@@ -38,6 +42,7 @@
     android:id="@+id/ClearAllButton"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/button_style" 
     android:layout_x="104dp"
     android:layout_y="385dp"
     android:text="Clear All" />

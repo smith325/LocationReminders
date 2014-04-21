@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Theme.Demostyle" parent="@android:style/Theme.Holo.Light">
+    <style name="Theme.Demostyle" parent="@style/componentstyles">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_demostyle</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Demostyle</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Demostyle</item>

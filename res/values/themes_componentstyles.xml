@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="componentstyles" parent="@style/_componentstyles"/>
+
+  <style name="_componentstyles" parent="android:Theme.Holo.Light">
+
+    <item name="android:editTextBackground">@drawable/componentstyles_edit_text_holo_light</item>
+
+    <item name="android:textColorHighlight">#99ff8800</item>
+    <item name="android:textSelectHandleLeft">@drawable/componentstyles_text_select_handle_left</item>
+    <item name="android:textSelectHandleRight">@drawable/componentstyles_text_select_handle_right</item>
+    <item name="android:textSelectHandle">@drawable/componentstyles_text_select_handle_middle</item>
+
+    <item name="android:listChoiceIndicatorMultiple">@drawable/componentstyles_btn_check_holo_light</item>
+
+    <item name="android:buttonStyle">@style/Buttoncomponentstyles</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtoncomponentstyles</item>
+
+    <item name="android:dropDownSpinnerStyle">@style/Spinnercomponentstyles</item>
+
+  </style>
+
+</resources>

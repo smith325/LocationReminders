@@ -47,6 +47,8 @@ public class ViewListActivity extends Activity {
 	    setContentView(R.layout.activity_view_main);
 	    Button back=(Button)findViewById(R.id.back);
 	    Button empty=(Button)findViewById(R.id.empty);
+	    //back.setBackgroundColor(0xffff9900);
+	    //empty.setBackgroundColor(0xff33ffff);
 	    sqldb = helper.getWritableDatabase(); 
 	    
 	    result = (TextView)findViewById(R.id.result); 

@@ -9,6 +9,7 @@
 	android:layout_width="122dp"
 	android:layout_height="wrap_content"
 	android:text="Main Menu"
+	android:background="@drawable/button_style"  
 	android:layout_x="92dp"
 	android:layout_y="163dp" />
 </AbsoluteLayout>

@@ -6,24 +6,26 @@
 
     <LinearLayout
         android:id="@+id/group"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/back"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_style"
             android:onClick="onClick"
             android:text="Back"
-            android:textSize="12dp" />
-        
+            android:textSize="11dp" />
+
         <Button
             android:id="@+id/empty"
-            android:layout_width="78dp"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_style"
             android:onClick="onClick"
             android:text="empty"
-            android:textSize="12dp" />
+            android:textSize="11dp" />
 
         <TextView
             android:id="@+id/result"
@@ -33,7 +35,7 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="116dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
         

@@ -6,10 +6,14 @@ import java.util.Calendar;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,44 +21,61 @@ import android.widget.TextView;
 
 public class CreateNewListActivity extends Activity {
 	ArrayList<EditText> items=new ArrayList<EditText>();
-	int Current_Y_Value=270;
+	int Current_Y_Value=0;
+	int width=0;
+	int height=0;
 	AbsoluteLayout abslayout;
+	
+	
+	        
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		WindowManager manager = (WindowManager)this.getSystemService(this.WINDOW_SERVICE);
+		Display display = manager.getDefaultDisplay();
+		width =display.getWidth();
+		height=display.getHeight();
+		
 		abslayout=new AbsoluteLayout (this);
 		setContentView(abslayout);
 		
 		String DB_NAME = "listsDB.db";
         final DBHelper mDBHelper = new DBHelper(
         		CreateNewListActivity.this);
-		
+        
+        //LayoutInflater inflater = (LayoutInflater)this.getSystemService
+        	//      (this.LAYOUT_INFLATER_SERVICE);
+        //Button CreateButton = (Button) inflater.inflate(R.drawable.button_style,null);
 		Button CreateButton= new Button(this);
 		CreateButton.setText("Create");
-		AbsoluteLayout.LayoutParams CreateLP=new AbsoluteLayout.LayoutParams(200, 100, 110, 900);
+		AbsoluteLayout.LayoutParams CreateLP=new AbsoluteLayout.LayoutParams(250, 250, 200, height-500);
+		CreateButton.setBackgroundColor(0xffff9900);
 		abslayout.addView(CreateButton, CreateLP);
 		
 		Button CancelButton= new Button(this);
 		CancelButton.setText("Cancel");
-		AbsoluteLayout.LayoutParams CancelLP=new AbsoluteLayout.LayoutParams(200, 100, 410, 900);
+		AbsoluteLayout.LayoutParams CancelLP=new AbsoluteLayout.LayoutParams(250, 250, width-500, height-500);
+		CancelButton.setBackgroundColor(0xffff9900);
 		abslayout.addView(CancelButton, CancelLP);
 		
 		TextView TextLocation=new TextView(this);
 		TextLocation.setText("Location");
-		AbsoluteLayout.LayoutParams TextLocationLP=new AbsoluteLayout.LayoutParams(250, 100, 300, 50);
+		AbsoluteLayout.LayoutParams TextLocationLP=new AbsoluteLayout.LayoutParams(250, 100, width/2-60, height/15);
 		abslayout.addView(TextLocation, TextLocationLP);
 		
 		final EditText EditLocation=new EditText(this);
-		AbsoluteLayout.LayoutParams EditLocationLP=new AbsoluteLayout.LayoutParams(500, 100, 120, 70);
+		AbsoluteLayout.LayoutParams EditLocationLP=new AbsoluteLayout.LayoutParams(500, 100, width/2-250, height/15+50);
 		abslayout.addView(EditLocation, EditLocationLP);
 		
 		TextView TextItem1=new TextView(this);
 		TextItem1.setText("Item");
-		AbsoluteLayout.LayoutParams TextItem1LP=new AbsoluteLayout.LayoutParams(250, 100, 325, 240);
+		AbsoluteLayout.LayoutParams TextItem1LP=new AbsoluteLayout.LayoutParams(250, 100, width/2-30, height/15+200);
 		abslayout.addView(TextItem1, TextItem1LP);
 		
 		final EditText EditItem1=new EditText(this);
-		AbsoluteLayout.LayoutParams EditItem1LP=new AbsoluteLayout.LayoutParams(250, 100, 230, 260);
+		AbsoluteLayout.LayoutParams EditItem1LP=new AbsoluteLayout.LayoutParams(250, 100, width/2-120, height/15+250);
+		Current_Y_Value=height/15+250+50;
 		abslayout.addView(EditItem1, EditItem1LP);
 		items.add(EditItem1);
 		
@@ -103,13 +124,14 @@ public class CreateNewListActivity extends Activity {
 		Current_Y_Value+=120;
 		TextView TextItem=new TextView(this);
 		TextItem.setText("Item");
-		AbsoluteLayout.LayoutParams TextItemLP=new AbsoluteLayout.LayoutParams(250, 100, 325, Current_Y_Value);
+		AbsoluteLayout.LayoutParams TextItemLP=new AbsoluteLayout.LayoutParams(250, 100, width/2-30, Current_Y_Value);
 		abslayout.addView(TextItem, TextItemLP);
 		
-		Current_Y_Value+=20;
+		Current_Y_Value+=50;
 		//EditText EditItem=new EditText(this);
 		items.add(new EditText(this));
-		AbsoluteLayout.LayoutParams EditItemLP=new AbsoluteLayout.LayoutParams(250, 100, 230, Current_Y_Value);
+		AbsoluteLayout.LayoutParams EditItemLP=new AbsoluteLayout.LayoutParams(250, 100, width/2-120, Current_Y_Value);
+		Current_Y_Value+=50;
 		//abslayout.addView(EditItem, EditItemLP);
 		abslayout.addView(items.get(items.size()-1), EditItemLP);
 		//items.add(EditItem);

@@ -1,5 +1,7 @@
 package com.example.locationremindersv0;
 
+import com.example.licationremindersv1.GetContactsActivity;
+import com.example.licationremindersv1.ShareListsActivity;
 import com.example.licationremindersv1.ViewListActivity;
 import android.os.Bundle;
 import android.app.Activity;
@@ -55,7 +57,9 @@ public class MainMenuActivity extends Activity {
 		ShareListButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-            
+            	Intent intent = new Intent();
+                intent.setClass(MainMenuActivity.this, GetContactsActivity.class);
+                startActivity(intent);
             }
         });
 		

@@ -1,6 +1,7 @@
 package com.example.licationremindersv1;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,7 +36,8 @@ public class ViewListActivity extends Activity {
     private static final String DATE = "date";
     final DBHelper helper = new DBHelper(this); 
     private TextView result = null;  
-    private Spinner spinner = null;  
+    private Spinner spinner = null; 
+    private String order = null;
     private ArrayAdapter<String> adapter = null;  
     private static final String [] choice ={"Date","Store","Item"};
 	//private SimpleCursorAdapter dataAdapter;	
@@ -63,24 +66,23 @@ public class ViewListActivity extends Activity {
 	    		//String select=choice[arg2];
 	    		String select=adapter.getItem(arg2);
 	    		if (select.equals("Store")) {
-	    			sortlistbystore();
+	    			order = STORE;
+	    			updatelistview(order);
 	    		} else if (select.equals("Date")) {
-	    			sortlistbydate();
+	    			order = DATE;
+	    			updatelistview(order);
 	    		} else if (select.equals("Item")) {
-	    			sortlistbyitem();
+	    			order = ITEM;
+	    			updatelistview(order);
 	    		} 
-	    }
+	    	}
 	    
 	    	@Override  
 	    	public void onNothingSelected(AdapterView<?> arg0) {  
 	    		// TODO Auto-generated method stub  
-	    		//updatelistview();
 	    	}  
 	    });
-	    
-	    
-	    //updatelistview();
-						  
+	    						  
 	    empty.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +94,7 @@ public class ViewListActivity extends Activity {
                      Toast.makeText(ViewListActivity.this, "empty success"+res+"lines",  
                              Toast.LENGTH_SHORT).show();  
                  }  
-                 updatelistview();
+                 updatelistview(null);
                  helper.onUpgrade(sqldb,1,2);//to keep id correctly
             }
         });
@@ -104,81 +106,39 @@ public class ViewListActivity extends Activity {
             }
         });
 	}
-	
-	@Override  
-    public boolean onCreateOptionsMenu(Menu menu) {  
-        // Inflate the menu; this adds items to the action bar if it is present.  
-        getMenuInflater().inflate(R.menu.main, menu);  
-        return true; 
-	}
-	
-	public void updatelistview() {  
+
+	public void updatelistview(String order) {  
 		ListView lv = (ListView) findViewById(R.id.lv);
 		
-		final Cursor cr = sqldb.query("lists", null, null, null, null, null, null);
+		final Cursor cr = sqldb.query("lists", null, null, null, null, null, order);
 		String[] ColumnNames = cr.getColumnNames(); 
 		
 		@SuppressWarnings("deprecation")
 		ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.item_info,  
                 cr, ColumnNames, new int[] { R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4}); 
 		lv.setAdapter(adapter); 
-	}
-		/*
+	
+		
 		lv.setOnItemClickListener(new OnItemClickListener(){
 			@Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
 				// Get the cursor, positioned to the corresponding row in the result set
 				Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-				int listid = cursor.getInt(cursor.getColumnIndexOrThrow("_store"));
+				int storeid = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+				String storename = cursor.getString(cursor.getColumnIndexOrThrow("_store"));
 				String itemname = cursor.getString(cursor.getColumnIndexOrThrow("item"));
 				String dates = cursor.getString(cursor.getColumnIndexOrThrow("date"));
 						
 				Intent intent=new Intent();	
-				intent.setClass(ViewListActivity.this, ViewListActivity.class);
-				intent.putExtra("_id", listid);
-				intent.putExtra("name", itemname);
+				intent.setClass(ViewListActivity.this, ViewListDetail.class);
+				intent.putExtra("_id", storeid);
+				intent.putExtra("_store", storename);
+				intent.putExtra("item", itemname);
 				intent.putExtra("date", dates);
 				startActivity(intent);	
 					
 			}
 		});
-		 */ 
-		public void sortlistbystore() {  
-			ListView lv = (ListView) findViewById(R.id.lv);
-			
-			final Cursor cr = sqldb.query("lists", null, null, null, null, null, STORE);
-			String[] ColumnNames = cr.getColumnNames(); 
-			
-			@SuppressWarnings("deprecation")
-			ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.item_info,  
-	                cr, ColumnNames, new int[] { R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4}); 
-			lv.setAdapter(adapter);
-		
-		}
-		
-		public void sortlistbydate() {  
-			ListView lv = (ListView) findViewById(R.id.lv);
-			
-			final Cursor cr = sqldb.query("lists", null, null, null, null, null, DATE);
-			String[] ColumnNames = cr.getColumnNames(); 
-			
-			@SuppressWarnings("deprecation")
-			ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.item_info,  
-	                cr, ColumnNames, new int[] { R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4}); 
-			lv.setAdapter(adapter);
-		
-		}
-		
-		public void sortlistbyitem() {  
-			ListView lv = (ListView) findViewById(R.id.lv);
-			
-			final Cursor cr = sqldb.query("lists", null, null, null, null, null, ITEM);
-			String[] ColumnNames = cr.getColumnNames(); 
-			
-			@SuppressWarnings("deprecation")
-			ListAdapter adapter = new SimpleCursorAdapter(this, R.layout.item_info,  
-	                cr, ColumnNames, new int[] { R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4}); 
-			lv.setAdapter(adapter);
-		
-		}
+
+	}		
 }

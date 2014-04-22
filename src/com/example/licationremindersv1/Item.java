@@ -17,6 +17,11 @@ public class Item {
 		dates = date; 
 	}
 	
+	public Item(){
+		item =" ";
+		store =" ";
+	}
+	
 	public Integer getId() {
 		return id;
 	}

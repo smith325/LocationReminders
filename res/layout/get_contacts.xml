@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/addfriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="9dp"
+            android:layout_y="5dp"
+            android:text="Add friends" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_weight="1.18"
+        android:text="Hello" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Back" />
+
+</LinearLayout>

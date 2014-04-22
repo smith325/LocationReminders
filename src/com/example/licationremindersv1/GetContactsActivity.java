@@ -48,6 +48,7 @@ public class GetContactsActivity extends Activity {
    
 	private Button addfriendsButton = null;
 	private Button nextButton = null;
+	private Button backButton = null;
 	
 	static final int REQUEST_SELECT_CONTACT = 1;
 	public ArrayList<String> mContactsName = new ArrayList<String>();
@@ -75,7 +76,15 @@ public class GetContactsActivity extends Activity {
         		DisplayViewList();
         	}
         });
-              
+        
+        backButton = (Button)findViewById(R.id.back);
+        
+        backButton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View view) {
+        		finish();
+        	}
+        });
+        
     }
 	
 	public void DisplayViewList() {

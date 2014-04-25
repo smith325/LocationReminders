@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.location.Location;
 import com.example.locationremindersv0.R;
 
 import android.app.Activity;
@@ -15,11 +16,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ViewListDetail extends Activity{
-	
-	@Override
+public class ViewListDetail extends Activity implements FindLocation.OnLocationUpdateCallbacks {
+    FindLocation locFinder;
+
+    @Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
+
+        locFinder = new FindLocation(this, this);
+
 		setContentView(R.layout.view_listdetail);
 		Button backButton=(Button)findViewById(R.id.backButton);
 		Item viewItem = new Item();
@@ -71,9 +76,8 @@ public class ViewListDetail extends Activity{
 		locationView.setVisibility(View.VISIBLE);
 		TextView name1View=(TextView)findViewById(R.id.textView2);
 		name1View.setVisibility(View.VISIBLE);
-		
-		
-		TextView viewTime=(TextView)findViewById(R.id.viewtime);
+
+        TextView viewTime=(TextView)findViewById(R.id.viewtime);
 		viewTime.setText(item.getDate().getTime().toString());
 		viewTime.setVisibility(View.VISIBLE);
 	
@@ -86,5 +90,23 @@ public class ViewListDetail extends Activity{
 		viewName.setVisibility(View.VISIBLE);
 	}
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        locFinder.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        locFinder.stop();
+    }
+
+    @Override
+    public void OnLocationUpdate(Location location) {
+        TextView viewGeoLocation=(TextView)findViewById(R.id.fillLocation);
+        viewGeoLocation.setText(location.toString());
+        viewGeoLocation.setVisibility(View.VISIBLE);
+    }
 }
 

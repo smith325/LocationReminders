@@ -8,13 +8,15 @@ public class Item {
 	private Integer id=null;
 	private String item=null;
 	private String store=null;
+    private String geoLocation = null;
 	private Calendar date=Calendar.getInstance();
 	
-	public Item(String items, String stores, Calendar dates) {	
+	public Item(String items, String stores, Calendar dates, String geoLocation) {
 		// TODO - fill in here, please note you must have more arguments here
 		items = item;
 		stores = store;
-		dates = date; 
+		dates = date;
+        geoLocation = geoLocation;
 	}
 	
 	public Item(){
@@ -31,7 +33,10 @@ public class Item {
 	public String getItem() {
 		return item;
 	}
-	public void setItem(String item) {
+    public String getLoc() {
+        return geoLocation;
+    }
+    public void setItem(String item) {
 		this.item = item;
 	}
 	public String getStore() {

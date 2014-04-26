@@ -63,6 +63,8 @@ public class ViewListDetail extends Activity implements FindLocation.OnLocationU
 		vItem.setDate(cal1);
 		
 		vItem.setStore(i.getStringExtra("_store"));
+
+        locFinder.setDestination(i.getStringExtra("_store"));
 		
 		vItem.setItem(i.getStringExtra("item"));
 		return vItem;

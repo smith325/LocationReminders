@@ -17,29 +17,13 @@
         android:layout_marginTop="56dp"
         android:text="View Details" 
         />
-    <TextView
-            android:id="@+id/textLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/viewname"
-            android:layout_below="@+id/textView1"
-            android:layout_marginTop="50dp"
-            android:visibility="visible"
-            android:text="My Location" />
-    <TextView
-            android:id="@+id/fillLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textLocation"
-            android:layout_centerHorizontal="true"
-            android:visibility="invisible"
-            android:ems="10" />
+
 	<TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/viewname"
-        android:layout_below="@+id/textLocation"
+        android:layout_below="@+id/textView1"
         android:layout_marginTop="50dp"
         android:visibility="invisible"
         android:text="Store Name" />

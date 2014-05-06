@@ -14,7 +14,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String DB_NAME = "list.sqlite"; 
     public static final String TB_NAME = "lists";
     public static final int VERSION = 1;
-    private static final String ID = "_id";
+    public static final String ID = "_id";
     public static final String STORE = "_store";  
     public static final String ITEM = "item";
     private static final String DATE = "date";

@@ -16,14 +16,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ViewListDetail extends Activity implements FindLocation.OnLocationUpdateCallbacks {
-    FindLocation locFinder;
+public class ViewListDetail extends Activity {
+
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        locFinder = new FindLocation(this, this);
+
 
 		setContentView(R.layout.view_listdetail);
 		Button backButton=(Button)findViewById(R.id.backButton);
@@ -64,8 +64,6 @@ public class ViewListDetail extends Activity implements FindLocation.OnLocationU
 		
 		vItem.setStore(i.getStringExtra("_store"));
 
-        locFinder.setDestination(i.getStringExtra("_store"));
-		
 		vItem.setItem(i.getStringExtra("item"));
 		return vItem;
 	}
@@ -95,20 +93,11 @@ public class ViewListDetail extends Activity implements FindLocation.OnLocationU
     @Override
     protected void onStart() {
         super.onStart();
-        locFinder.start();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        locFinder.stop();
-    }
-
-    @Override
-    public void OnLocationUpdate(Location location) {
-        TextView viewGeoLocation=(TextView)findViewById(R.id.fillLocation);
-        viewGeoLocation.setText(location.toString());
-        viewGeoLocation.setVisibility(View.VISIBLE);
     }
 }
 

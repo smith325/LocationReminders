@@ -1,7 +1,9 @@
 package com.example.licationremindersv1;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.location.LocationListener;
@@ -15,6 +17,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
+import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationRequest;
 import org.json.JSONArray;
@@ -25,6 +28,10 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.DoubleBuffer;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.net.URLEncoder.encode;
 
@@ -41,8 +48,11 @@ public class FindLocation implements
     private LocationClient mLocationClient;
     private Context context;
     private OnLocationUpdateCallbacks callbacks;
+    public ViewListActivity viewLists;
     Location mCurrentLocation;
     private String dest;
+    public String name;
+    public long id;
 
 
     // Milliseconds per second
@@ -62,13 +72,17 @@ public class FindLocation implements
         this.context = context;
         this.callbacks = callbacks;
     }
-
+    public void setLocation(String dest){
+        this.dest = dest;
+    }
     public void start() {
         Log.d("FindLocation", "starting...");
         mLocationClient = new LocationClient(this.context, this, this);
         mLocationClient.connect();
     }
-
+    public void setID(long id){
+        this.id = id;
+    }
     public void stop(){
         Log.d("FindLocation", "stopping...");
         mLocationClient.disconnect();
@@ -79,9 +93,8 @@ public class FindLocation implements
     public void onConnected(Bundle bundle) {
         Log.d("FindLocation", "connected");
         mCurrentLocation = mLocationClient.getLastLocation();
-        callbacks.OnLocationUpdate(mCurrentLocation);
-        setDestintionFull(this.dest, mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
-
+//        callbacks.OnLocationUpdate(mCurrentLocation);
+        setDestintionFull(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
     }
 
     @Override
@@ -124,24 +137,25 @@ public class FindLocation implements
     public void onProviderDisabled(String provider) {
 
     }
-    public void setDestination(String dest){
-        this.dest = dest;
-    }
-    public void setDestintionFull(String dest,double lat, double lon){
-        this.dest = dest;
-        FindLocationTask task = new FindLocationTask(dest,lat,lon);
+    public void setDestintionFull(double lat, double lon){
+        FindLocationTask task = new FindLocationTask(this.dest,lat,lon,this.id, context);
         task.execute();
     }
-    private class FindLocationTask extends AsyncTask<URL, Integer, JSONObject> {
+    private class FindLocationTask extends AsyncTask<URL, Integer, JSONObject> implements LocationClient.OnAddGeofencesResultListener {
         private String dest;
-        private double lat, lon;
-        public FindLocationTask(String destination, double lat, double lon){
+        private long id;
+        public double lat, lon;
+        private Context context;
+        public FindLocationTask(String destination, double lat, double lon, long id, Context context){
             this.dest = destination;
             this.lat = lat;
             this.lon = lon;
+            this.id = id;
+            this.context = context;
         }
         @Override
         protected JSONObject doInBackground(URL... params) {
+            Log.d("null1?",""+this.id);
             Log.d("FindLocation","in doInBackground");
             URL url = null;
             String location = null;
@@ -152,7 +166,6 @@ public class FindLocation implements
                     e.printStackTrace();
                 }
                 url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+this.lat+","+this.lon+"&radius=200&name="+location+"&sensor=false&key=AIzaSyBI1TsUmczwyvfKMCueoSXZe6NOSJijOtY\n");
-
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -199,16 +212,45 @@ public class FindLocation implements
             super.onPostExecute(json);
             try {
                 if(json != null){
-                    JSONArray jArray = json.getJSONArray("result");
+                    JSONArray jArray = json.getJSONArray("results");
                     JSONObject jObj = (JSONObject)jArray.get(0);
                     String name = jObj.getString("name");
+                    Log.d("FindLocation Place: ",name);
+
                     String address = jObj.getString("vicinity");
 
+                    double lat = jObj.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
+                    double lon = jObj.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
+
+                    Log.d("FindLocation","lat: "+lat);
+                    Log.d("FindLocation","lon: "+lon);
+
+                    Log.d("null2?",""+this.id);
+
+                    Geofence builder = new Geofence.Builder()
+                                .setRequestId(""+this.id)
+                                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
+                                .setCircularRegion(lat, lon, 50)
+                                .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                                .build();
+
+                    Intent notificationIntent = new Intent(context, GpsSearch.class);
+                    notificationIntent.putExtra("name",name);
+                    notificationIntent.putExtra("address",address);
+                    PendingIntent intent = PendingIntent.getActivity(this.context, 0,notificationIntent, 0);
+                    List<Geofence> mGeofenceList = new ArrayList<Geofence>();
+                    mGeofenceList.add(builder);
+                    mLocationClient.addGeofences(mGeofenceList, intent,this);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
-    };
+
+        @Override
+        public void onAddGeofencesResult(int i, String[] strings) {
+            Log.d("FindLocation","onAddGeofencesREsult: "+i);
+        }
+    }
+
 }

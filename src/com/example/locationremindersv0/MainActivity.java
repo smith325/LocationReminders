@@ -2,6 +2,7 @@ package com.example.locationremindersv0;
 
 
 import android.app.Dialog;
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import com.example.licationremindersv1.FindLocation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.ErrorDialogFragment;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -40,7 +42,10 @@ public class MainActivity extends Activity implements GooglePlayServicesClient.C
 	            }
 	        });
         boolean connected = servicesConnected();
+
         mLocationClient = new LocationClient(this, this, this);
+
+
 	}
 
 	@Override

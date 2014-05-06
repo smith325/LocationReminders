@@ -4,9 +4,11 @@ package com.example.locationremindersv0;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,21 +20,25 @@ import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.example.licationremindersv1.FindLocation;
 
-public class CreateNewListActivity extends Activity {
+public class CreateNewListActivity extends Activity implements   FindLocation.OnLocationUpdateCallbacks {
 	ArrayList<EditText> items=new ArrayList<EditText>();
 	int Current_Y_Value=0;
 	int width=0;
 	int height=0;
 	AbsoluteLayout abslayout;
-	
-	
-	        
-	@Override
+    FindLocation locFinder;
+
+
+
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		WindowManager manager = (WindowManager)this.getSystemService(this.WINDOW_SERVICE);
+
+
+        WindowManager manager = (WindowManager)this.getSystemService(this.WINDOW_SERVICE);
 		Display display = manager.getDefaultDisplay();
 		width =display.getWidth();
 		height=display.getHeight();
@@ -78,8 +84,12 @@ public class CreateNewListActivity extends Activity {
 		Current_Y_Value=height/15+250+50;
 		abslayout.addView(EditItem1, EditItem1LP);
 		items.add(EditItem1);
-		
-		CancelButton.setOnClickListener(new OnClickListener() {
+
+        if(EditLocation.getText()!= null){
+        }
+
+
+        CancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
             	finish();
@@ -95,8 +105,14 @@ public class CreateNewListActivity extends Activity {
             		     s.append(items.get(i).getText());
             	}
             	Calendar date=Calendar.getInstance();
-            	mDBHelper.addEntry(EditLocation.getText().toString(), s.toString(), date.getTime().toString()); 
-            	finish();
+                String destination = EditLocation.getText().toString();
+            	long id = mDBHelper.addEntry(destination, s.toString(), date.getTime().toString());
+                locFinder = new FindLocation(CreateNewListActivity.this,CreateNewListActivity.this);
+                Log.d("locfinderlocation: ", destination);
+                locFinder.setLocation(destination);
+                locFinder.setID(id);
+                locFinder.start();
+                finish();
             }
         });
 	}
@@ -138,4 +154,8 @@ public class CreateNewListActivity extends Activity {
 		
 	}
 
+    @Override
+    public void OnLocationUpdate(Location location) {
+
+    }
 }

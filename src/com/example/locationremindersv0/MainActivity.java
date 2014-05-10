@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import com.example.licationremindersv1.LocationServices;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.ErrorDialogFragment;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -32,6 +33,8 @@ public class MainActivity extends Activity {
 	                startActivity(intent);
 	            }
 	        });
+        Intent i = new Intent(this,LocationServices.class);
+        this.startService(i);
 	}
 
 	@Override

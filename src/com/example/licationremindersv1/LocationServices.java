@@ -33,25 +33,35 @@ public class LocationServices extends IntentService implements
         GooglePlayServicesClient.OnConnectionFailedListener,LocationListener {
 
 
+    private static final String ACTION_CALCULATE_DISTANCE = "com.example.licationremindersv1.ACTION_CALCULATE_DISTANCE";
+
     private LocationClient mLocationClient;
 
     public LocationServices() {
         super("LocationServices");
-        mLocationClient = new LocationClient(this, this, this);
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
+
+        if(mLocationClient == null){
+            mLocationClient = new LocationClient(this, this, this);
+        }
+
         if(!mLocationClient.isConnected() && !mLocationClient.isConnecting()){
             mLocationClient.connect();
         }
 
+        String action = intent.getAction();
+        if(action != null && action.equals(ACTION_CALCULATE_DISTANCE)){
+            calculateDistanceTo();
+        }
     }
 
     private void calculateDistanceTo() {
         Location currentLocation = mLocationClient.getLastLocation();
 
-        JSONObject json = doGooglePlaceSearch("Starbucks",currentLocation);
+        JSONObject json = doGooglePlaceSearch("Octagon",currentLocation);
         try {
             if(json != null){
                 JSONArray jArray = json.getJSONArray("results");
@@ -85,7 +95,9 @@ public class LocationServices extends IntentService implements
 
     @Override
     public void onConnected(Bundle bundle) {
-        calculateDistanceTo();
+        Intent i = new Intent(this,LocationServices.class);
+        i.setAction(ACTION_CALCULATE_DISTANCE);
+        this.startService(i);
     }
 
     @Override

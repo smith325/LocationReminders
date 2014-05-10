@@ -7,10 +7,8 @@ import java.util.Calendar;
 import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,15 +18,13 @@ import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.example.licationremindersv1.FindLocation;
 
-public class CreateNewListActivity extends Activity implements   FindLocation.OnLocationUpdateCallbacks {
+public class CreateNewListActivity extends Activity {
 	ArrayList<EditText> items=new ArrayList<EditText>();
 	int Current_Y_Value=0;
 	int width=0;
 	int height=0;
 	AbsoluteLayout abslayout;
-    FindLocation locFinder;
 
 
 
@@ -107,11 +103,7 @@ public class CreateNewListActivity extends Activity implements   FindLocation.On
             	Calendar date=Calendar.getInstance();
                 String destination = EditLocation.getText().toString();
             	long id = mDBHelper.addEntry(destination, s.toString(), date.getTime().toString());
-                locFinder = new FindLocation(CreateNewListActivity.this,CreateNewListActivity.this);
-                Log.d("locfinderlocation: ", destination);
-                locFinder.setLocation(destination);
-                locFinder.setID(id);
-                locFinder.start();
+
                 finish();
             }
         });
@@ -154,8 +146,4 @@ public class CreateNewListActivity extends Activity implements   FindLocation.On
 		
 	}
 
-    @Override
-    public void OnLocationUpdate(Location location) {
-
-    }
 }

@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.AbsoluteLayout;
 import android.widget.TextView;
+import com.example.licationremindersv1.Place;
+
+import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {  
 	
@@ -67,12 +70,6 @@ public class DBHelper extends SQLiteOpenHelper {
 		 arg0.execSQL("DROP TABLE IF EXISTS "+TB_NAME);
 	     onCreate(arg0);
 	}
-	    
-	 public Cursor selectAll(){
-	        SQLiteDatabase db = this.getReadableDatabase();
-	        Cursor cursor = db.query(TB_NAME, null, null, null,null, null, null);
-	        return cursor;
-	 }
 	 
 	 public Cursor selectStore(){
 	        SQLiteDatabase db = this.getReadableDatabase();
@@ -87,7 +84,18 @@ public class DBHelper extends SQLiteOpenHelper {
 	        Cursor cursor= db.rawQuery("SELECT * FROM lists", null);
 	        return cursor;
 	 }
-    
+     public ArrayList<Place> getAll(){
+         ArrayList<Place> list = new ArrayList<Place>();
+         Cursor cursor = selectItems();
+         while(cursor.moveToNext()){
+             Place p = new Place(cursor.getString(cursor.getColumnIndexOrThrow("_store")),
+                     cursor.getString(cursor.getColumnIndexOrThrow("date")),
+                     cursor.getString(cursor.getColumnIndexOrThrow("item")),
+                     cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
+             list.add(p);
+         }
+         return list;
+     }
 }  
 
 

@@ -1,13 +1,22 @@
 package com.example.licationremindersv1;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
+import com.example.locationremindersv0.DBHelper;
+import com.example.locationremindersv0.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.Geofence;
@@ -34,6 +43,10 @@ public class LocationServices extends IntentService implements
 
 
     private static final String ACTION_CALCULATE_DISTANCE = "com.example.licationremindersv1.ACTION_CALCULATE_DISTANCE";
+    SQLiteDatabase sqldb;
+    final DBHelper helper = new DBHelper(this);
+
+
 
     private LocationClient mLocationClient;
 
@@ -50,14 +63,36 @@ public class LocationServices extends IntentService implements
 
         if(!mLocationClient.isConnected() && !mLocationClient.isConnecting()){
             mLocationClient.connect();
-        }
 
-        String action = intent.getAction();
-        if(action != null && action.equals(ACTION_CALCULATE_DISTANCE)){
-            calculateDistanceTo();
+        }else{
+            String action = intent.getAction();
+            if(action != null && action.equals(ACTION_CALCULATE_DISTANCE)){
+                calculateDistanceTo();
+            }
         }
     }
 
+    private Intent connectToDB(){
+        sqldb = helper.getWritableDatabase();
+        final Cursor cr = sqldb.query("lists", null, null, null, null, null, null);
+
+        cr.moveToFirst();
+
+        int storeid = cr.getInt(cr.getColumnIndexOrThrow("_id"));
+        String storename = cr.getString(cr.getColumnIndexOrThrow("_store"));
+        String itemname = cr.getString(cr.getColumnIndexOrThrow("item"));
+        String dates = cr.getString(cr.getColumnIndexOrThrow("date"));
+
+        Intent intent=new Intent();
+        intent.setClass(this, ViewListDetail.class);
+        intent.putExtra("_id", storeid);
+        intent.putExtra("_store", storename);
+        intent.putExtra("item", itemname);
+        intent.putExtra("date", dates);
+
+        return intent;
+
+    }
     private void calculateDistanceTo() {
         Location currentLocation = mLocationClient.getLastLocation();
 
@@ -84,7 +119,25 @@ public class LocationServices extends IntentService implements
 
                 float distance = location.distanceTo(currentLocation);
                 if(distance < 100){
+
+                    Intent i = connectToDB();
+                    PendingIntent pending = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+
                     Log.d("distanceto: ",""+distance);
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(this)
+                                    .setContentTitle("Location Nearby!")
+                                    .setContentText(name + " is located at " + address)
+                                    .setSmallIcon(R.drawable.ic_launcher)
+                                    .setContentIntent(pending)
+                                    .setAutoCancel(true)
+                                    .setWhen(System.currentTimeMillis())
+                            ;
+
+                    mBuilder.setDefaults(Notification.DEFAULT_ALL);
+
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    notificationManager.notify(0,mBuilder.build());
                 }
 
             }

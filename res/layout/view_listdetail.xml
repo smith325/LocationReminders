@@ -87,13 +87,13 @@
         android:visibility="invisible"
         android:text="Error!" />
 
-	<Button
-	    android:id="@+id/backButton"
-	    android:layout_width="83dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/textView1"
-	    android:layout_below="@+id/viewdestination"
-	    android:layout_marginTop="74dp"
-	    android:text="Back" />
-	
+
+    <Button
+            android:id="@+id/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewdestination"
+            android:layout_marginTop="74dp"
+            android:layout_centerHorizontal="true"
+            android:text="Share on Google+" />
 </RelativeLayout>

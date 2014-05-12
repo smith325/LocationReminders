@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.location.Location;
+import android.net.Uri;
 import com.example.locationremindersv0.R;
 
 import android.app.Activity;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import com.google.android.gms.plus.PlusShare;
 
 public class ViewListDetail extends Activity {
 
@@ -26,7 +28,6 @@ public class ViewListDetail extends Activity {
 
 
 		setContentView(R.layout.view_listdetail);
-		Button backButton=(Button)findViewById(R.id.backButton);
 		Item viewItem = new Item();
 		try {
 			viewItem = getItemFromIntent(getIntent());
@@ -42,13 +43,23 @@ public class ViewListDetail extends Activity {
 		else{ 
 				initView(viewItem);
 		}
-		
-		backButton.setOnClickListener(new OnClickListener() {
+
+        Button shareButton = (Button) findViewById(R.id.share_button);
+        final Item finalViewItem = viewItem;
+        shareButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-            	finish();
+                // Launch the Google+ share dialog with attribution to your app.
+                Intent shareIntent = new PlusShare.Builder(ViewListDetail.this)
+                        .setType("text/plain")
+                        .setText(finalViewItem.getStore()+"\n"+finalViewItem.getItem())
+                        .setContentUrl(Uri.parse("https://developers.google.com/+/"))
+                        .getIntent();
+
+                startActivityForResult(shareIntent, 0);
             }
         });
+		
 	}
 	
 	public Item getItemFromIntent(Intent i) throws ParseException {
@@ -69,7 +80,6 @@ public class ViewListDetail extends Activity {
 	}
 
 	public void initView(Item item) {		
-		// TODO - fill in here
 		TextView timeView=(TextView)findViewById(R.id.textView3);
 		timeView.setVisibility(View.VISIBLE);
 		TextView locationView=(TextView)findViewById(R.id.textView4);

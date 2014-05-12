@@ -135,7 +135,7 @@ public class GetContactsActivity extends Activity {
         } 
 
     	Intent messageIntent = new Intent(Intent.ACTION_SENDTO,Uri.parse("smsto:"+totalnumber));
-    	messageIntent.putExtra("sms_body", totalinfo+"https://github.com/NYU-Poly-CS9033-Spring-2014/LocationReminders.git");
+    	messageIntent.putExtra("sms_body", totalinfo.toString());
     	startActivity(messageIntent);
     }
   

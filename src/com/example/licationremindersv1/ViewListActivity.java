@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.example.locationremindersv0.DBHelper;
 import com.example.locationremindersv0.R;
-import com.google.android.gms.common.GooglePlayServicesClient;
 
 public class ViewListActivity extends Activity  {
 	

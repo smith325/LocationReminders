@@ -16,8 +16,9 @@ import android.widget.Toast;
 import com.example.locationremindersv0.DBHelper;
 import com.example.locationremindersv0.R;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import com.google.android.gms.location.LocationRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,8 +35,9 @@ import static java.net.URLEncoder.encode;
  * Created by sesmith325 on 5/10/14.
  */
 public class LocationServices extends IntentService implements
-        GooglePlayServicesClient.ConnectionCallbacks,
-        GooglePlayServicesClient.OnConnectionFailedListener,LocationListener {
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        com.google.android.gms.location.LocationListener {
 
 
     private static final String ACTION_CALCULATE_DISTANCE = "com.example.licationremindersv1.ACTION_CALCULATE_DISTANCE";
@@ -44,7 +46,9 @@ public class LocationServices extends IntentService implements
 
 
 
-    private LocationClient mLocationClient;
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
+
 
     public LocationServices() {
         super("LocationServices");
@@ -53,17 +57,32 @@ public class LocationServices extends IntentService implements
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        if(mLocationClient == null){
-            mLocationClient = new LocationClient(this, this, this);
+        if(intent.hasExtra(com.google.android.gms.location.LocationServices.FusedLocationApi.KEY_LOCATION_CHANGED)){
+            Location currentLocation = intent.getParcelableExtra(com.google.android.gms.location.LocationServices.FusedLocationApi.KEY_LOCATION_CHANGED);
+            calculateDistanceTo(currentLocation);
+            return;
         }
 
-        if(!mLocationClient.isConnected() && !mLocationClient.isConnecting()){
-            mLocationClient.connect();
+
+
+        if(mGoogleApiClient == null){
+            Log.d("onHandleIntent","new locationClient");
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addApi(com.google.android.gms.location.LocationServices.API)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .build();
+        }
+
+        if(!mGoogleApiClient.isConnected() && !mGoogleApiClient.isConnecting()){
+            Log.d("onHandleIntent","is connecting");
+            mGoogleApiClient.connect();
 
         }else{
             String action = intent.getAction();
             if(action != null && action.equals(ACTION_CALCULATE_DISTANCE)){
-                calculateDistanceTo();
+                Log.d("onHandleIntent","calcDistanceTo");
+
             }
         }
     }
@@ -80,14 +99,13 @@ public class LocationServices extends IntentService implements
         return intent;
 
     }
-    private void calculateDistanceTo() {
-        Location currentLocation = mLocationClient.getLastLocation();
+    private void calculateDistanceTo(Location currentLocation) {
 
         ArrayList<Place> list = helper.getAll();
 
         for (Place place : list){
             JSONObject json = doGooglePlaceSearch(place.name,currentLocation);
-            MakeNotification(currentLocation, json,place);
+            MakeNotification(currentLocation,json,place);
         }
     }
 
@@ -143,15 +161,16 @@ public class LocationServices extends IntentService implements
 
     @Override
     public void onConnected(Bundle bundle) {
-        Intent i = new Intent(this,LocationServices.class);
-        i.setAction(ACTION_CALCULATE_DISTANCE);
-        this.startService(i);
+        PendingIntent pending = PendingIntent.getService(this, 0, new Intent(this, LocationServices.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_NO_POWER);
+        mLocationRequest.setSmallestDisplacement(75);
+        mLocationRequest.setFastestInterval(30000);
+        Location currentLocation = com.google.android.gms.location.LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        com.google.android.gms.location.LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, pending);
     }
 
-    @Override
-    public void onDisconnected() {
-        Log.d("FindLocation", "disconnected");
-    }
 
     @Override
     public void onLocationChanged(Location location) {
@@ -160,21 +179,10 @@ public class LocationServices extends IntentService implements
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        Log.d("FindLocation", "status changed: "+provider + " " +status);
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
+        Intent i = new Intent(this,LocationServices.class);
+        i.setAction(ACTION_CALCULATE_DISTANCE);
+        this.startService(i);
     }
 
     @Override
@@ -235,6 +243,10 @@ public class LocationServices extends IntentService implements
             }
         }
         return null;
+    }
+    @Override
+    public void onConnectionSuspended(int i) {
+        Log.i("LocationServices", "GoogleApiClient connection has been suspend");
     }
 
 }

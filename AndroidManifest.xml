@@ -5,12 +5,13 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="21"
+        android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
    	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE" />
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -52,17 +53,17 @@
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.ViewListActivity"
+            android:name="com.example.locationremindersv1.ViewListActivity"
             android:label="@string/title_activity_view_list" >
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.ViewListDetail"
+            android:name="com.example.locationremindersv1.ViewListDetail"
             android:label="@string/title_activity_view_list" >
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.ShareListsActivity"
+            android:name="com.example.locationremindersv1.ShareListsActivity"
             android:label="Share Lists" >
             
             <intent-filter>
@@ -85,7 +86,7 @@
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.GetContactsActivity"
+            android:name="com.example.locationremindersv1.GetContactsActivity"
             android:label="Get Contacts" >
             
             <intent-filter>
@@ -107,7 +108,7 @@
     		</intent-filter>
         </activity>
 
-        <service android:name="com.example.licationremindersv1.LocationServices"/>
+        <service android:name="com.example.locationremindersv1.LocationServices"/>
 
     </application>
 

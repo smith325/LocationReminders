@@ -5,7 +5,7 @@
 
   <style name="componentstyles" parent="@style/_componentstyles"/>
 
-  <style name="_componentstyles" parent="android:Theme.Holo.Light">
+  <style name="_componentstyles" parent="android:Theme.Material.Light">
 
     <item name="android:editTextBackground">@drawable/componentstyles_edit_text_holo_light</item>
 

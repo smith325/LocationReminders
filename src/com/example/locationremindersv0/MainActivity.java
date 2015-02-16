@@ -1,21 +1,15 @@
 package com.example.locationremindersv0;
 
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.example.licationremindersv1.LocationServices;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.ErrorDialogFragment;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.location.LocationClient;
+import com.example.locationremindersv1.LocationServices;
+
 
 public class MainActivity extends Activity {
 	private Button MainMenuButton = null;

@@ -1,3 +1,8 @@
 .idea
 classes
 gen
+bin/
+classes/
+gen/
+libs/
+res/

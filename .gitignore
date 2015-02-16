@@ -1,10 +1,2 @@
-.idea
 classes
-gen
 .DS_Store
-.idea/
-bin/
-classes/
-gen/
-libs/
-res/

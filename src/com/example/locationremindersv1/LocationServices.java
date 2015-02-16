@@ -1,14 +1,12 @@
-package com.example.licationremindersv1;
+package com.example.locationremindersv1;
 
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -40,7 +38,7 @@ public class LocationServices extends IntentService implements
         com.google.android.gms.location.LocationListener {
 
 
-    private static final String ACTION_CALCULATE_DISTANCE = "com.example.licationremindersv1.ACTION_CALCULATE_DISTANCE";
+    private static final String ACTION_CALCULATE_DISTANCE = "com.example.locationremindersv1.ACTION_CALCULATE_DISTANCE";
     SQLiteDatabase sqldb;
     final DBHelper helper = new DBHelper(this);
 
@@ -78,12 +76,6 @@ public class LocationServices extends IntentService implements
             Log.d("onHandleIntent","is connecting");
             mGoogleApiClient.connect();
 
-        }else{
-            String action = intent.getAction();
-            if(action != null && action.equals(ACTION_CALCULATE_DISTANCE)){
-                Log.d("onHandleIntent","calcDistanceTo");
-
-            }
         }
     }
 

@@ -1,16 +1,14 @@
 package com.example.locationremindersv0;
 
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.example.licationremindersv1.LocationServices;
+import com.example.locationremindersv1.LocationServices;
 
 
 public class MainActivity extends Activity {

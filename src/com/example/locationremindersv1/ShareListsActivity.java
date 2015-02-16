@@ -1,4 +1,4 @@
-package com.example.licationremindersv1;
+package com.example.locationremindersv1;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class ShareListsActivity extends Activity {

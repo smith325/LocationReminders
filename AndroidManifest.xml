@@ -53,17 +53,17 @@
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.ViewListActivity"
+            android:name="com.example.locationremindersv1.ViewListActivity"
             android:label="@string/title_activity_view_list" >
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.ViewListDetail"
+            android:name="com.example.locationremindersv1.ViewListDetail"
             android:label="@string/title_activity_view_list" >
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.ShareListsActivity"
+            android:name="com.example.locationremindersv1.ShareListsActivity"
             android:label="Share Lists" >
             
             <intent-filter>
@@ -86,7 +86,7 @@
         </activity>
         
         <activity
-            android:name="com.example.licationremindersv1.GetContactsActivity"
+            android:name="com.example.locationremindersv1.GetContactsActivity"
             android:label="Get Contacts" >
             
             <intent-filter>
@@ -108,7 +108,7 @@
     		</intent-filter>
         </activity>
 
-        <service android:name="com.example.licationremindersv1.LocationServices"/>
+        <service android:name="com.example.locationremindersv1.LocationServices"/>
 
     </application>
 

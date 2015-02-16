@@ -1,4 +1,4 @@
-package com.example.licationremindersv1;
+package com.example.locationremindersv1;
 
 import android.app.Activity;
 

@@ -1,8 +1,7 @@
 package com.example.locationremindersv0;
 
-import com.example.licationremindersv1.GetContactsActivity;
-import com.example.licationremindersv1.ShareListsActivity;
-import com.example.licationremindersv1.ViewListActivity;
+import com.example.locationremindersv1.GetContactsActivity;
+import com.example.locationremindersv1.ViewListActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainMenuActivity extends Activity {
 	private Button NewListButton = null;

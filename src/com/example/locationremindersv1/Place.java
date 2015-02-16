@@ -1,4 +1,4 @@
-package com.example.licationremindersv1;
+package com.example.locationremindersv1;
 
 /**
  * Created by sesmith325 on 5/10/14.

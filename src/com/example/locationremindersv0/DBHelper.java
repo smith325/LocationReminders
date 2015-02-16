@@ -4,11 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.AbsoluteLayout;
-import android.widget.TextView;
-import com.example.licationremindersv1.Place;
+import com.example.locationremindersv1.Place;
 
 import java.util.ArrayList;
 

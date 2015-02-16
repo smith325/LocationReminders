@@ -1,6 +1,7 @@
 .idea
 classes
 gen
+.DS_Store
 bin/
 classes/
 gen/

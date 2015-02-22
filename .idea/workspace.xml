@@ -128,10 +128,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBHelper.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DBHelper.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/locationremindersv0/DBHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="50" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.6499134" vertical-offset="465" max-vertical-offset="1755">
+            <state line="52" column="36" selection-start="1840" selection-end="1840" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1920">
               <folding />
             </state>
           </provider>
@@ -158,17 +158,25 @@
       <file leaf-file-name="LoadListActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/locationremindersv0/LoadListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="68" selection-start="2933" selection-end="2933" vertical-scroll-proportion="0.0" vertical-offset="505" max-vertical-offset="1530">
-              <folding />
+            <state line="71" column="0" selection-start="2694" selection-end="2694" vertical-scroll-proportion="0.0" vertical-offset="428" max-vertical-offset="1500">
+              <folding>
+                <element signature="e#3486#3736#0" expanded="true" />
+                <element signature="e#3709#3710#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateNewListActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CreateNewListActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/locationremindersv0/CreateNewListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="53" selection-start="3427" selection-end="3427" vertical-scroll-proportion="-6.351852" vertical-offset="782" max-vertical-offset="1965">
-              <folding />
+            <state line="103" column="80" selection-start="3707" selection-end="3707" vertical-scroll-proportion="0.84914464" vertical-offset="759" max-vertical-offset="2100">
+              <folding>
+                <element signature="e#3048#3182#0" expanded="true" />
+                <element signature="e#3171#3172#0" expanded="true" />
+                <element signature="e#3222#3779#0" expanded="true" />
+                <element signature="e#3768#3769#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,11 +216,11 @@
         <option value="$PROJECT_DIR$/src/com/example/locationremindersv1/GetContactsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/locationremindersv1/LocationServices.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/locationremindersv0/CreateNewListActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/locationremindersv1/ViewListActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/locationremindersv1/Place.java" />
         <option value="$PROJECT_DIR$/src/com/example/locationremindersv0/LoadListActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/locationremindersv0/DBHelper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/locationremindersv0/CreateNewListActivity.java" />
       </list>
     </option>
   </component>
@@ -568,7 +576,7 @@
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -675,16 +683,16 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32951653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32951653" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5788804" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3498965" sideWeight="0.5005325" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32505175" sideWeight="0.49946752" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3498965" sideWeight="0.49946752" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22567287" sideWeight="0.49946752" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1020,22 +1028,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/locationremindersv0/LoadListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="68" selection-start="2933" selection-end="2933" vertical-scroll-proportion="0.0" vertical-offset="505" max-vertical-offset="1530">
+        <state line="71" column="0" selection-start="2694" selection-end="2694" vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="1500">
+          <folding>
+            <element signature="e#3486#3736#0" expanded="true" />
+            <element signature="e#3709#3710#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/locationremindersv0/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="36" selection-start="1840" selection-end="1840" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1920">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/locationremindersv0/CreateNewListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="53" selection-start="3427" selection-end="3427" vertical-scroll-proportion="-6.351852" vertical-offset="782" max-vertical-offset="1965">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/locationremindersv0/DBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="50" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.6499134" vertical-offset="465" max-vertical-offset="1755">
-          <folding />
+        <state line="103" column="80" selection-start="3707" selection-end="3707" vertical-scroll-proportion="0.84914464" vertical-offset="759" max-vertical-offset="2100">
+          <folding>
+            <element signature="e#3048#3182#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3222#3779#0" expanded="true" />
+            <element signature="e#3768#3769#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -95,14 +95,15 @@ public class CreateNewListActivity extends Activity {
 		CreateButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-            	StringBuffer s=new StringBuffer(EditItem1.getText());
-            	for(int i=1; i<=items.size()-1; i++){
-            		     s.append("#");
-            		     s.append(items.get(i).getText());
-            	}
-            	Calendar date=Calendar.getInstance();
+                StringBuffer s=new StringBuffer(EditItem1.getText());
                 String destination = EditLocation.getText().toString();
-            	long id = mDBHelper.addEntry(destination, s.toString(),0, date.getTime().toString());
+                Calendar date=Calendar.getInstance();
+                mDBHelper.addEntry(destination, date.toString());
+
+                for(int i=1; i<=items.size()-1; i++){
+                    mDBHelper.addItemsEntry(destination, items.get(i).toString(), 0);
+
+            	}
 
                 finish();
             }

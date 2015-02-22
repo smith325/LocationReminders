@@ -57,7 +57,7 @@ public class LoadListActivity extends Activity {
         spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener(){  
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {  
                
-            	String selectStore=adapter.getItem(arg2);
+            	final String selectStore=adapter.getItem(arg2);
             	if(selectStore!=" "){
             		TextView textStore=new TextView(LoadListActivity.this);
             		textStore.setText(adapter.getItem(arg2));
@@ -73,10 +73,8 @@ public class LoadListActivity extends Activity {
             		while(resultCursor.moveToNext()){
             			if(resultCursor.getString(1).equals(selectStore))
             		
-            				it=resultCursor.getString(2).split("#");
-            				String a = resultCursor.getString(3);
-                            Log.d("LoadListActivity", a);
-            			
+            				it=resultCursor.getString(2).split("\n");
+
             		}
             		int Y_Value_Of_Checkbox=height/8;
             		for(int i=0; i<=it.length-1; i++){
@@ -86,12 +84,12 @@ public class LoadListActivity extends Activity {
             			Y_Value_Of_Checkbox+=80;
             			abslayout.addView(checkBox, checkBoxLP);
             			setContentView(abslayout);
-                        /*checkBox.setOnClickListener(new OnClickListener() {
+                        checkBox.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                mDBHelper.updateChecked(,true);
+                                mDBHelper.updateChecked(selectStore,true);
                             }
-                        });*/
+                        });
             	    }
             		Button BackButton= new Button(LoadListActivity.this);
             		BackButton.setText("Back");

@@ -45,23 +45,34 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE items (_id integer primary key autoincrement, _store int ,item VARCHAR, checked integer)");
     }   
     
-    public long addEntry(String store, String item, int checked, String dates) {
+    public long addEntry(String store, String date) {
     	SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values = new ContentValues();   
         values.put(STORE, store);   
+        values.put(DATE,date);
+        long row=db.insert(DBHelper.TB_NAME, null, values);
+        db.close();
+        return row;
+    }
+
+    public long addItemsEntry(String store, String item, int checked) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(STORE, store);
         values.put(ITEM, item);
         values.put(CHECKED_ITEM,checked);
         long row=db.insert(DBHelper.ITEM_TB_NAME, null, values);
         db.close();
         return row;
     }
-    public void updateChecked(int id, boolean c){
+
+    public void updateChecked(String store, boolean c){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(CHECKED_ITEM,c);
         String [] whereArgs = new String[1];
-        whereArgs[0] = ""+id;
-        long row = db.update(DBHelper.ITEM_TB_NAME,values,"_id=?",whereArgs);
+        whereArgs[0] = store;
+        long row = db.update(DBHelper.ITEM_TB_NAME,values,"_store=?",whereArgs);
         db.close();
     }
     public Cursor getEntry(String Store)

@@ -11,6 +11,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.View;
@@ -74,6 +75,7 @@ public class LoadListActivity extends Activity {
             		
             				it=resultCursor.getString(2).split("#");
             				String a = resultCursor.getString(3);
+                            Log.d("LoadListActivity", a);
             			
             		}
             		int Y_Value_Of_Checkbox=height/8;
@@ -84,6 +86,12 @@ public class LoadListActivity extends Activity {
             			Y_Value_Of_Checkbox+=80;
             			abslayout.addView(checkBox, checkBoxLP);
             			setContentView(abslayout);
+                        /*checkBox.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mDBHelper.updateChecked(,true);
+                            }
+                        });*/
             	    }
             		Button BackButton= new Button(LoadListActivity.this);
             		BackButton.setText("Back");

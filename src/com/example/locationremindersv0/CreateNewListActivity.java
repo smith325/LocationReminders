@@ -102,7 +102,7 @@ public class CreateNewListActivity extends Activity {
             	}
             	Calendar date=Calendar.getInstance();
                 String destination = EditLocation.getText().toString();
-            	long id = mDBHelper.addEntry(destination, s.toString(), date.getTime().toString());
+            	long id = mDBHelper.addEntry(destination, s.toString(),0, date.getTime().toString());
 
                 finish();
             }

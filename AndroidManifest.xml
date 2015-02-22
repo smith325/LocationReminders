@@ -28,7 +28,7 @@
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.example.locationremindersv0.MainActivity"
+            android:name="com.example.locationremindersv0.MainMenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,11 +45,6 @@
         <activity
             android:name="com.example.locationremindersv0.LoadListActivity"
             android:label="@string/title_activity_load_list" >
-        </activity>
-        
-        <activity
-            android:name="com.example.locationremindersv0.MainMenuActivity"
-            android:label="@string/title_activity_main_menu" >
         </activity>
         
         <activity

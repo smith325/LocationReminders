@@ -128,6 +128,7 @@ public class ViewListActivity extends Activity  {
 				int storeid = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
 				String storename = cursor.getString(cursor.getColumnIndexOrThrow("_store"));
 				String itemname = cursor.getString(cursor.getColumnIndexOrThrow("item"));
+                int checked = cursor.getInt(cursor.getColumnIndex("checked"));
 				String dates = cursor.getString(cursor.getColumnIndexOrThrow("date"));
 						
 				Intent intent=new Intent();	
@@ -135,6 +136,7 @@ public class ViewListActivity extends Activity  {
 				intent.putExtra("_id", storeid);
 				intent.putExtra("_store", storename);
 				intent.putExtra("item", itemname);
+                intent.putExtra("checked", checked);
 				intent.putExtra("date", dates);
 				startActivity(intent);	
 					
